@@ -12,6 +12,7 @@ This is the implementation of the models and code for the "RDFNet:RGB-D Multi-le
 # Usage
 - Install Opencv 
 - Compile pycaffe: modify the "Makefile.config" in caffe-master for your environment.
+- Download the model files.
 - Run test.py 
   - Change 'caffe_root'
   - Set the 'scale' and 'model' to test.

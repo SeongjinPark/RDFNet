@@ -19,7 +19,7 @@ This is the implementation of the models and test code for the "RDFNet:RGB-D Mul
   - To achieve the same accuracy reported in our paper, you need to implement multi-scale (0.6~1.2) ensemble as described in the paper.
   
 # Environment
-Our experiments are mainly performed on Ubuntu 14.04 with CUDA7.0 / CUDNNv4 / Titan X (maxwell) / Opencv2.7
+Our experiments were mainly performed on Ubuntu 14.04 with CUDA7.0 / CUDNNv4 / Titan X (maxwell) / Opencv2.7
   
 # Note
 - Similarly to RefineNet,

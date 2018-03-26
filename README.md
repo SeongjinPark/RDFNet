@@ -23,7 +23,7 @@ Our experiments are mainly performed on Ubuntu 14.04 with CUDA7.0 / CUDNNv4 / Ti
   
 # Note
 - Similarly to RefineNet,
-  - Our implementation uses bicubic resize function for feature map resizing.
+  - Our implementation uses bicubic resize function to resize feature map.
   - We remove white boundaries of the images in NYUDv2.
 - Any comment for improvement is welcome as the code is not fully optimized. but please note that further maintenance will be infrequently performed.
 - OOM may occur for RDF-152 with the image scale larger than 1.0 on different environtment (e.g., Titan Xp, CUDA 8.0, CUDNN v6)

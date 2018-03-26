@@ -59,7 +59,6 @@ class NYUDSegDataLayer(caffe.Layer):
 #        self.mean_bgr = np.array((116.190, 97.203, 92.318), dtype=np.float32)
         self.mean_bgr = np.array((128.0, 128.0, 128.0), dtype=np.float32)
         self.mean_hhc = np.array((132.431, 94.076, 111.8078), dtype=np.float32)
-        self.mean_hhb = np.array((132.431, 94.076, 128.0), dtype=np.float32)
 
         self.mean_hha = np.array((132.431, 94.076, 118.477), dtype=np.float32)
         self.mean_xyz = np.array((112.203, 68.398, 97.728), dtype=np.float32)
@@ -158,13 +157,9 @@ class NYUDSegDataLayer(caffe.Layer):
         elif top == 'depth':
             return self.load_depth(idx)
         elif top == 'hha':
-            return self.load_hha(idx)
-        elif top == 'scenelabel':
-            return self.load_scenelabel(idx)         
+            return self.load_hha(idx)   
         elif top == 'xyz':
-            return self.load_xyz(idx) 
-        elif top == 'hhb':
-            return self.load_hhb(idx)              
+            return self.load_xyz(idx)              
         else:
             raise Exception("Unknown output type: {}".format(top))
 
@@ -500,108 +495,5 @@ class NYUDSegDataLayer(caffe.Layer):
         xyz = xyz.transpose((2,0,1))
         return xyz
         
-    def load_hhb(self, idx):
-        """
-        Load hhb features
-        """
-        im = Image.open('{}/hhb_org/img_{}.png'.format(self.nyud_dir, idx))
-        im = im.crop((7,7,im.size[0]-7,im.size[1]-7)) # white boundary        
-        if(self.do_aug):
-            if(self.do_flip_aug and self.aug_flip):
-                im = im.transpose(Image.FLIP_LEFT_RIGHT)
-            if(self.do_scale_aug and (self.aug_scale>0)):
-                d1 = int(round(im.size[0] * self.aug_scale))
-                d2 = int(round(im.size[1] * self.aug_scale))
-#                if(d1%2): d1 = d1+1
-#                if(not d2%2): d2 = d2+1
-                im = im.resize((d1,d2), Image.BICUBIC)
-#                print im.size
-
-                
-            if(self.do_crop_aug):
-#                if(self.crop_box_ratio>0):
-#                    step_size = int(round(self.crop_box_size * self.crop_box_ratio))
-#                    step_size = max(step_size,1)
-#                else:
-#                    step_size = 1
-#                
-#                max_range = [max(d1 - self.crop_box_size,0), max(d2 - self.crop_box_size,0)]
-#                crop_d1s = range(0,max_range[0],step_size)
-#                crop_d1s.append(max_range[0])
-#                crop_d2s = range(0,max_range[1],step_size)
-#                crop_d2s.append(max_range[1])
-#                
-#                self.crop_x = crop_d1s[random.randint(0, len(crop_d1s)-1)]
-#                self.crop_y = crop_d2s[random.randint(0, len(crop_d2s)-1)]
-#
-#                self.crop_x_end =min(self.crop_x+self.crop_box_size-1,d1-1);
-#                self.crop_y_end =min(self.crop_y+self.crop_box_size-1,d2-1);
-#
-#                if(not ((self.crop_y_end-self.crop_y-1)%2)): self.crop_y_end = self.crop_y_end-1
-                im = im.crop((self.crop_x,self.crop_y,self.crop_x_end+1,self.crop_y_end+1))   
-                im = im.resize( (int(round(im.size[0]*self.input_scale)), int(round(im.size[1]*self.input_scale))), Image.BICUBIC)
-           
-                         
-#        im = Image.open('{}/images/{}.png'.format(self.nyud_dir, idx))
-#        if 'trainval' not in self.split:
-#            print(idx)
-#        if( (im.size[0]%32 !=0) or (im.size[1] %32 !=0) ):
-#            pad_im = Image.new("RGB",(int(32*np.ceil(im.size[0]/32.0)),int(32*np.ceil(im.size[1]/32.0))),(128,128,128))
-#            pad_im.paste(im,(0,0))
-#            im = pad_im
-##            im = im.resize( (int(32*np.ceil(im.size[0]/32.0)),int(32*np.ceil(im.size[1]/32.0))), Image.BILINEAR)
-#            del pad_im
-        
-#        im = Image.open('{}/hha/{}.png'.format(self.nyud_dir, idx))
-        
-        hhc = np.array(im, dtype=np.float32)
-        hhc -= self.mean_hhb
-        hhb = hhc[:,:,2]
-        hhb = hhb[np.newaxis, ...]
-        return hhb
-       
 
         
-    def load_scenelabel(self, idx):
-        
-        """
-        Load scene label
-        ['basement'
-        'bathroom'
-        'bedroom'
-        'bookstore'
-        'cafe'
-        'classroom'
-        'computer_lab'
-        'conference_room'
-        'dinette'
-        'dining_room'
-        'excercise_room'
-        'foyer'
-        'furniture_store'
-        'home_office'
-        'home_storage'
-        'indoor_balcony'
-        'kitchen'
-        'laundry_room'
-        'living_room'
-        'office'
-        'office_kitchen'
-        'playroom'
-        'printer_room'
-        'reception_room'
-        'student_lounge'
-        'study'
-        'study_room']
-        """
-        """
-        'bedroom'	'kitchen'	'living_room'	'bathroom'	'dining_room'	'office'	'home_office'	'classroom'	'bookstore'	'others'
-        """
-        
-        split_f  = '{}/scenelabels/{}.txt'.format(self.nyud_dir, 'scenelabel10')
-        f=open(split_f)
-        lines=f.readlines()
-        scenelabel = np.array(lines[int(idx)-5001], dtype=np.uint8)
-#        scenelabel = np.array(lines[int(idx)-1], dtype=np.uint8)
-
-        return scenelabel

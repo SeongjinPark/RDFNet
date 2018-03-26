@@ -1,4 +1,4 @@
-# RDFNet
+# RDFNet:RGB-D Multi-level Residual Feature Fusion for Indoor Semantic Segmentation
 This is the implementation of the models and code for the "RDFNet:RGB-D Multi-level Residual Feature Fusion for Indoor Semantic Segmentation", ICCV2017.
 
 # File description 

@@ -29,6 +29,7 @@ Our experiments are mainly performed on Ubuntu 14.04 with CUDA7.0 / CUDNNv4 / Ti
 
 # Citation
 - We would like to thank Guosheng Lin [3] for invaluable help.
+
 [1] @InProceedings{Park_2017_ICCV,
 author = {Park, Seong-Jin and Hong, Ki-Sang and Lee, Seungyong},
 title = {RDFNet: RGB-D Multi-Level Residual Feature Fusion for Indoor Semantic Segmentation},

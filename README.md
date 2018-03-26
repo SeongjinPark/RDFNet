@@ -4,7 +4,7 @@ This is the implementation of the models and test code for the "RDFNet:RGB-D Mul
 # File description 
 - caffe-master: caffe used in our experiments
 - test.py: demo code  
-- Each of NYU-50 / NYU-101 / NYU-152 directory includes RDF model and its prototxt corresponding to different number of resnet layers. (*You need to change the 'nyud_dir' parameter in the prototxt.)
+- Each of NYU-50 / NYU-101 / NYU-152 directory includes RDF model and its prototxt corresponding to different number of resnet layers. (*You may need to change the 'nyud_dir' parameter in the prototxt.)
 - data: test data  
 - nyud_layers.py: input python layer
 - gupta-utils-HHA: HHA generation utils by Gupta et al. [2]

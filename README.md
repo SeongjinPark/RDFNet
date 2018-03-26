@@ -7,7 +7,7 @@ This is the implementation of the models and code for the "RDFNet:RGB-D Multi-le
 - Each of NYU-50 / NYU-101 / NYU-152 directory includes RDF model and its prototxt corresponding to different number of resnet layers. (*You need to change the 'nyud_dir' parameter in the prototxt.)
 - data: test data  
 - nyud_layers.py: input python layer
-- gupta-utils-HHA: HHA generation utils by Gupta et al. [1]
+- gupta-utils-HHA: HHA generation utils by Gupta et al. [2]
 
 # Usage
 - Install Opencv 
@@ -28,6 +28,7 @@ Our experiments are mainly performed on Ubuntu 14.04 with CUDA7.0 / CUDNNv4 / Ti
 - OOM may occur for RDF-152 with the image scale larger than 1.0 on different environtment (e.g., Titan Xp, CUDA 8.0, CUDNN v6)
 
 # Citation
+- We would like to thank Guosheng Lin [3] for invaluable help.
 [1] @InProceedings{Park_2017_ICCV,
 author = {Park, Seong-Jin and Hong, Ki-Sang and Lee, Seungyong},
 title = {RDFNet: RGB-D Multi-Level Residual Feature Fusion for Indoor Semantic Segmentation},

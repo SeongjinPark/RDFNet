@@ -46,11 +46,11 @@ year = {2017}
   year = {2014},
 }
 
-[3] @article{lin2016refinenet,
-  title={Refinenet: Multi-path refinement networks with identity mappings for high-resolution semantic segmentation},
+[3] @inproceedings{lin2017refinenet,
+  title={Refinenet: Multi-path refinement networks for high-resolution semantic segmentation},
   author={Lin, Guosheng and Milan, Anton and Shen, Chunhua and Reid, Ian},
-  journal={arXiv preprint arXiv:1611.06612},
-  year={2016}
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2017}
 }
 
 # License
